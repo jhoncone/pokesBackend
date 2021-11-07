@@ -54,12 +54,7 @@ public class PokeController {
 
         ArrayList<String> data = new ArrayList<String>();
         Pokemon p;
-        if(id.matches("-?\\d+")) {
-            Chain c = clienteRest.getForObject("https://pokeapi.co/api/v2/evolution-chain/" + id, Chain.class);
-            p = clienteRest.getForObject("https://pokeapi.co/api/v2/pokemon/" + c.getChain().getSpecies().getName(), Pokemon.class);
-            assert p != null;
-        }
-        else
+
             p = clienteRest.getForObject("https://pokeapi.co/api/v2/pokemon/" + id, Pokemon.class);
         PokemonJson pokemon = new PokemonJson();
         pokemon.setId(p.getId());
