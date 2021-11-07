@@ -74,6 +74,10 @@ public class PokeController {
     @RequestMapping("/{id}/evoluciones")
     public EvolutionJson getEvolutions(@PathVariable("id") int id){
         RestTemplate clienteRest = new RestTemplate();
+	if((id)>((id)/3)){
+          id=(int) Math.ceil((id)/(3.0));	 
+	  
+        }   
         Chain p = clienteRest.getForObject("https://pokeapi.co/api/v2/evolution-chain/" + id, Chain.class);
         EvolutionJson evoluciones = new EvolutionJson();
         assert p != null;
