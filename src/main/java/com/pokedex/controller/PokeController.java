@@ -33,21 +33,7 @@ public class PokeController {
 		return pokes;
     }
 
-    @RequestMapping("/{id}/")
-    public ArrayList<String> getInfo(@PathVariable("id") int id){
-        RestTemplate clienteRest = new RestTemplate();
 
-        ArrayList<String> data = new ArrayList<String>();
-        Chain c = clienteRest.getForObject("https://pokeapi.co/api/v2/evolution-chain/" + id, Chain.class);
-        assert c != null;
-        data.add(c.getChain().getSpecies().getName());
-
-        Pokemon p = clienteRest.getForObject("https://pokeapi.co/api/v2/pokemon/" + c.getChain().getSpecies().getName(), Pokemon.class);
-        assert p != null;
-        data.add(String.valueOf(p.getId()));
-
-        return data;
-    }
     @RequestMapping("{id}/info")
     public PokemonJson getPokemon(@PathVariable("id") String id){
         RestTemplate clienteRest = new RestTemplate();
