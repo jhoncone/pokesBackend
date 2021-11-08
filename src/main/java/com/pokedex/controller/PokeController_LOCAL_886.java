@@ -29,7 +29,6 @@ public class PokeController {
 			i++;
 		}
 		return pokes;
-<<<<<<< HEAD
 	}
 
 	@RequestMapping("{id}/info")
@@ -67,54 +66,6 @@ public class PokeController {
 		Evolution evo = p.getChain();
 
 		while (evo != null) {
-=======
-    }
-
-
-    @RequestMapping("{id}/info")
-    public PokemonJson getPokemon(@PathVariable("id") String id){
-        RestTemplate clienteRest = new RestTemplate();
-
-        ArrayList<String> data = new ArrayList<String>();
-        Pokemon p;
-
-            p = clienteRest.getForObject("https://pokeapi.co/api/v2/pokemon/" + id, Pokemon.class);
-        PokemonJson pokemon = new PokemonJson();
-        pokemon.setId(p.getId());
-        pokemon.setName(p.getName());
-        pokemon.setWeight(p.getWeight());
-        pokemon.setImage(p.getSprites().getFront_default());
-
-        for(int i=0;i<p.getAbilities().size();i+=1){
-            pokemon.addAbility(p.getAbilities().get(i).getAbility().getName());
-        }
-        for(int i=0;i<p.getTypes().size();i+=1){
-            pokemon.addType(p.getTypes().get(i).getType().getName());
-        }
-        return pokemon;
-    }
-
-    @RequestMapping("/{id}/evoluciones")
-    public EvolutionJson getEvolutions(@PathVariable("id") int id){
-        RestTemplate clienteRest = new RestTemplate();
-	if((id)>((id)/3)){
-          id=(int) Math.ceil((id)/(3.0));	 
-	  
-        }   
-        Chain p = clienteRest.getForObject("https://pokeapi.co/api/v2/evolution-chain/" + id, Chain.class);
-        EvolutionJson evoluciones = new EvolutionJson();
-        assert p != null;
-        Evolution evo = p.getChain();
-        while(evo!=null){
-            evoluciones.addPokemon(evo.getSpecies().getName());
-            if(!evo.getEvolves_to().isEmpty())
-                evo = evo.getEvolves_to().get(0);
-            else
-                evo = null;
-        }
-        return evoluciones;
-    }
->>>>>>> d8344acf8998075a75993a43dc904974df1e43f1
 
 			evoluciones.addPokemon(evo.getSpecies().getName());
 
